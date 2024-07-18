@@ -1,0 +1,33 @@
+//----------------------------------------------------------------
+//--- Gerhard Schubert - GmbH Hofaeckerstr. 7 74564 Crailsheim ---
+//--- DGreb 06/2020 ----------------------------------------------
+//--- Version: 00.00.02 ------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+option csharp_namespace = "VMS.VisionSystem";
+
+message ImprintMapping{
+     string imprint_name = 1; 
+     uint32 class_id = 2; // output ids of the neural net
+     uint32 product_id = 3; // product_ids of VMS (products with different physical properties) 
+}
+
+message FormatAvailableResponse {
+    repeated string format_list = 1;
+}
+
+message FormatLoadedResponse {
+    uint32 id = 1;  //format unique id
+}
+
+message FormatRequest
+{
+    uint32 id = 1;      //format unique id, identifies a neural network
+    // needed for mapping of neural network output to the input of VMS 
+    // VMS does not need class_ids of the neuronal net but a number which
+    // gathers products with different imprints but same physical dimensions to one product_id
+    repeated ImprintMapping imprint_mappings = 2; 
+}

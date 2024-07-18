@@ -1,0 +1,15 @@
+{
+	"_comment": "configs for baumer camera",
+	"_autoBrightness": "choose between const exposure and auto",
+	"autoBrightness": false,
+	"brightnessAutoX": 10,
+	"brightnessAutoY": 10,
+	"brightnessAutoWidth": 1024,
+	"brightnessAutoHeight": 1024,
+	"autoWhiteBalance": false,
+	"whiteBalanceAutoX": 10,
+	"whiteBalanceAutoY": 10,
+	"whiteBalanceAutoWidth": 1024,
+	"whiteBalanceAutoHeight": 1024,
+	"gain": 1.0
+}

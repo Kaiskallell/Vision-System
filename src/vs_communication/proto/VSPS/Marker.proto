@@ -1,0 +1,27 @@
+//----------------------------------------------------------------
+//--- Gerhard Schubert - GmbH Hofaeckerstr. 7 74564 Crailsheim ---
+//--- DGreb 04/2019 ----------------------------------------------
+//--- Version: 00.00.03 ------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+option csharp_namespace = "VMS.VisionSystem";
+
+// Marker-Position
+message Marker
+{
+        uint32 marker_value = 1;
+        uint32 marker_size = 2;
+        double x = 3;
+        double y = 4;
+        double z = 5;
+        uint32 marker_id = 6;
+}
+
+message MarkerPosition
+{
+    uint32 vision_system_id = 1;
+    repeated Marker marker_position = 2;
+}

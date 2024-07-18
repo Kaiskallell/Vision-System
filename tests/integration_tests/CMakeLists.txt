@@ -1,0 +1,8 @@
+#add_subdirectory(vmsMock)
+add_subdirectory(tc3Mock)
+#add_subdirectory(vs_communication/VsTestClient)
+#add_subdirectory(vs_communication/VsTestClientGui)
+add_subdirectory(httpServer)
+#add_subdirectory(detectFromTray)
+add_subdirectory(trackingTest)
+add_subdirectory(classificationExtension)

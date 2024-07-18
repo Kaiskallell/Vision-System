@@ -1,0 +1,80 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "areaNumber": 1,
+    "udp_configuration":
+    {
+        "udp_enabled": false,
+        "udp_twinCatIP": "192.168.53.89",
+        "udp_twinCatPort": 53004,
+        "udp_visionSystemIP": "192.168.53.120",
+        "udp_visionSystemPort": 53004
+    },
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "_type": [
+            "MockCamera",
+            "BaumerCam",
+            "GV5040FA"
+        ],
+        "camera": [
+            {
+                "polygonPoints_": "detection area masking points, which are used to create a polygon (clockwise)",
+                "polygonPoints": [
+                    {
+                        "id": 1,
+                        "u": 165,
+                        "v": 0
+                    },
+                    {
+                        "id": 2,
+                        "u": 1020,
+                        "v": 0
+                    },
+                    {
+                        "id": 3,
+                        "u": 1020,
+                        "v": 1023
+                    },
+                    {
+                        "id": 4,
+                        "u": 165,
+                        "v": 1024
+                    }
+                ],
+                "exposureTime": 3000,
+                "binningEnabled": false,
+                "serialNumbers": [
+                    "700009474060"
+                ],
+                "type": "MockCamera",
+                "triggerMode_": "'Hardware', 'Off'",
+                "triggerMode": "Off",
+                "cropX": 192,
+                "cropY": 0,
+                "cropWidth": 1024,
+                "cropHeight": 1024,
+                "color": false,
+                "mockImgsPath": "../../resources/mockcamera/area1_stechtest/imgs/cam0/",
+                "reverseY": false,
+                "reverseX": false
+            }
+        ]
+    },
+    "stechtestConfigs": {
+        "active": true,
+        "filterByArea": true,
+        "minArea": 100.0,
+        "filterByCircularity": true,
+        "minCircularity": 0.9,
+        "filterByConvexity": true,
+        "minConvexity": 0.2,
+        "filterByInertia": true,
+        "minInertiaRatio": 0.01,
+        "distanceToStechBoard": 0.262
+    }
+}

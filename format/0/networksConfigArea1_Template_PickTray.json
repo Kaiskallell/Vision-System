@@ -1,0 +1,140 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "areaNumber": 1,
+    "udp_configuration":
+    {
+        "udp_enabled": false,
+        "udp_twinCatIP": "192.168.53.89",
+        "udp_twinCatPort": 53004,
+        "udp_visionSystemIP": "192.168.53.120",
+        "udp_visionSystemPort": 53004
+    },
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "_type": [
+            "MockCamera",
+            "BaumerCam",
+            "GV5040FA"
+        ],
+        "camera": [
+            {
+                "polygonPoints_": "detection area masking points, which are used to create a polygon (clockwise)",
+                "polygonPoints": [
+                    {
+                        "id": 1,
+                        "u": 165,
+                        "v": 0
+                    },
+                    {
+                        "id": 2,
+                        "u": 1020,
+                        "v": 0
+                    },
+                    {
+                        "id": 3,
+                        "u": 1020,
+                        "v": 1023
+                    },
+                    {
+                        "id": 4,
+                        "u": 165,
+                        "v": 1024
+                    }
+                ],
+                "exposureTime": 3000,
+                "binningEnabled": false,
+                "serialNumbers": [
+                    "700009474060"
+                ],
+                "type": "MockCamera",
+                "triggerMode_": "'Hardware', 'Off'",
+                "triggerMode": "Off",
+                "cropX": 192,
+                "cropY": 0,
+                "cropWidth": 1024,
+                "cropHeight": 1024,
+                "color": false,
+                "mockImgsPath": "../../resources/mockcamera/area1_pickfromTray/imgs/cam0/",
+                "reverseY": false,
+                "reverseX": false
+            }
+        ]
+    },
+    "stechtestConfigs": {
+        "active": false,
+        "filterByArea": true,
+        "minArea": 100.0,
+        "filterByCircularity": true,
+        "minCircularity": 0.9,
+        "filterByConvexity": true,
+        "minConvexity": 0.2,
+        "filterByInertia": true,
+        "minInertiaRatio": 0.01,
+        "distanceToStechBoard": 0.262
+    },
+    "appConfigs":{
+        "generalConfigs":{
+            "pickMode_": "can be 'tray' or 'conveyor' or 'ipaDetection'",
+            "pickMode": "tray",
+            "trayArea": {
+                "u0": 0,
+                "v0": 0,
+                "u1": 1023,
+                "v1": 0,
+                "u2": 1023,
+                "v2": 1023,
+                "u3": 0,
+                "v3": 1023
+            },
+            "maxAmountOfProductsPerImg": 5
+        },
+        "yolo": {
+            "_comment": "configs for yolo",
+            "generalNetworkConfigs":{
+                "onnxPath": "../../resources/mockcamera/area1_pickfromTray/config/20240228_Minderleinsmühle_Haufen_1024_yolov5_2cls_s_best.onnx",
+                "dataType_": "'fp32' or 'fp16' or 'int8'",
+                "dataType": "fp16",
+                "useTrt": true,
+                "calibImgsPath": "",
+                "inputLayerName": "images",
+                "outputLayerName": "output",
+                "whichYoloToUse": "yoloV5",
+                "preprocessing": {
+                    "color": false
+                }
+            },
+            "detectionConfigs":{
+                "confThr": 0.8,
+                "nmsThr": 0.4,
+                "filterBySize":{
+                    "enable": false,
+                    "widthMin": 150.0,
+                    "widthMax": 300.0,
+                    "heightMin": 150.0,
+                    "heightMax": 150.0
+                },     
+                "classPredictionOn": false,
+                "desiredClasses": [
+                    0,
+                    1
+                ],
+                "desiredClassesConstZ": {
+                    "enable": true,
+                    "classToValuesInMeterMapping": {
+                        "0": 0.262,
+                        "1": 0.258
+                    }
+                },
+                "cropOffset": 10,
+                "sortingDirection_": "'u' or 'v'",
+                "sortingDirection": "v",
+                "sortingRelationOperator": "<"
+            }
+        }
+    }
+}

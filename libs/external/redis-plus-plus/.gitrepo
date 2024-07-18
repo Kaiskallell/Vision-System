@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/sewenew/redis-plus-plus
+	branch = master
+	commit = 74b10b76b09ff44064a702eefc3218e75cb09812
+	parent = 0d32cca8dfa425fedaf3d9f5bf7171d6db17f228
+	method = merge
+	cmdver = 0.4.3

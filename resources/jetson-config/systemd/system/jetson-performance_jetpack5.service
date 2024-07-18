@@ -1,0 +1,23 @@
+[Unit]
+Description=Sets Jetson performance parameters 
+
+[Service]
+Type=simple
+Restart=on-failure
+RemainAfterExit=true
+# rtc correct system time
+ExecStartPre=/usr/sbin/hwclock -s
+# set jetson performance parameters
+ExecStartPre=/sbin/sysctl -w net.core.rmem_max=33554432
+ExecStartPre=/sbin/sysctl -w net.core.wmem_max=33554432
+ExecStartPre=/sbin/sysctl -w net.core.rmem_default=33554432
+ExecStartPre=/sbin/sysctl -w net.core.wmem_default=33554432
+ExecStartPre=/bin/sleep 60
+ExecStartPre=/usr/bin/jetson_clocks
+# set receive buffer
+ExecStart=/sbin/ethtool -G poe4 rx 4096
+
+[Install]
+WantedBy=multi-user.target
+
+

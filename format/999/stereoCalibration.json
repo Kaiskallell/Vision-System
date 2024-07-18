@@ -1,0 +1,26 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "stereoCalibration": {
+        "outputFileName": "stereoMap_inv.xml",
+        "serialNbrOfLeftCam": "700009474060",
+        "serialNbrOfRightCam": "700009474066",
+        "pathToImgOfLeftCam": "/home/cobot/Documents/git/VisionSystem/resources/mockcamera/stereocalibration/700009474060/image0000547.png",
+        "pathToImgOfRightCam": "/home/cobot/Documents/git/VisionSystem/resources/mockcamera/stereocalibration/700009474066/image0000099.png",
+        "calibrationBoardConfigPath": "../../config/calibrationboard.json",
+        "initSize": {
+            "width": 1024,
+            "height": 1024
+        },
+        "targetSize": {
+            "width": 832,
+            "height": 832
+        },
+        "uOffset": 192,
+        "vOffset": 0
+    }
+}

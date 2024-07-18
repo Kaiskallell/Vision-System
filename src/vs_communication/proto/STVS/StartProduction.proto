@@ -1,0 +1,16 @@
+//----------------------------------------------------------------
+//--- Lachmann & Rink GmbH, Hommeswiese 129, 57258 Freudenberg ---
+//--- tha 12/2018 ------------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+option csharp_namespace = "VMS.VisionSystem";
+
+message StartProductionRequest {
+    uint32 program_id = 1; // bei ID 2^32-1 (MAX_UINT_32) immer ACK
+}
+
+message StartProductionResponseAck {
+}

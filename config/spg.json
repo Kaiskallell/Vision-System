@@ -1,0 +1,55 @@
+{
+    "policy": {
+        "type": "spg",
+        "sampling_method": "top_k",
+        "gqcnn_stride": 4,
+        "gqcnn_recep_h": 96,
+        "gqcnn_recep_w": 96,
+        "max_grasps_to_filter": 50,
+        "filter_grasps": 0,
+        "num_actions": 10,
+        "sampling": {
+            "min_dist_from_boundary" : 0, 
+            "max_suction_dir_optical_axis_angle": 25
+        },
+        "metric": {
+            "type": "fcgqcnn",
+            "input1" : "Placeholder",
+            "output" : "softmax/Softmax",
+            "gqcnn_backend": "tf",
+            "fully_conv_gqcnn_config": {
+                "im_height": 386,
+                "im_width": 386
+            }
+        },
+        "policy_vis": {
+            "scale": 0.5,
+            "show_axis": 1,
+            "num_samples": 0,
+            "actions_2d": 0,
+            "actions_3d": 0,
+            "affordance_map": 0
+        },
+        "vis": {
+            "grasp_sampling": 1,
+            "final_grasp": 1,
+            "input_images": 0,
+            "point_cloud" : 0
+        },
+        "spg": {
+            "convolution_thresh": 0.9,
+            "convolution_iters": 4,
+            "smoothing_iters": 8,
+            "raycast_window": 32,
+            "gripper_rad": 0.014,
+            "gripper_height": 0.006,
+            "raycast_thresh": 0.9
+        }
+    },
+    "inpaint_rescale_factor": 0.5,
+    "use_inpaint": 1,
+
+    "normalized_segmentation": 1,
+    "segmentation_threshold": 0,
+    "visualize_segmentation": 1
+}

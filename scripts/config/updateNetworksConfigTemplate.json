@@ -1,0 +1,243 @@
+{
+    "_commentNetworksConfig": "This networksConfig.json was created or revised by a script.",
+    "areaNumber": 0,
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "_type": [
+            "Mock3D",
+            "GV5040FA",
+            "creStereoMock",
+            "BaumerCam",
+            "creStereoBaumer",
+            "creStereoGV5040FA",
+            "plainStereoBaumer"
+        ],
+        "camera": [
+            {
+                "polygonPoints_": "detection area masking points, which are used to create a polygon (clockwise)",
+                "polygonPoints": [
+                    {
+                        "id": 1,
+                        "u": 0,
+                        "v": 0
+                    },
+                    {
+                        "id": 2,
+                        "u": 1024,
+                        "v": 0
+                    },
+                    {
+                        "id": 3,
+                        "u": 1024,
+                        "v": 1024
+                    },
+                    {
+                        "id": 4,
+                        "u": 0,
+                        "v": 1024
+                    }
+                ],
+                "exposureTime": 123,
+                "binningEnabled": false,
+                "serialNumbers": [
+                    "123456789"
+                ],
+                "type": "Mock3D",
+                "triggerMode_": "'Hardware', 'Off'",
+                "triggerMode": "Hardware",
+                "cropX": 0,
+                "cropY": 0,
+                "cropWidth": 1024,
+                "cropHeight": 1024,
+                "color": true,
+                "mockImgsPath": "",
+                "reverseY": false,
+                "reverseX": false
+            }
+        ],
+        "udp_enabled": true
+    },
+    "udp_twinCatIP": "192.168.53.89",
+    "upd_twinCatPort_": "Valid values are 53004 (right) and 53005 (left)",
+    "udp_twinCatPort": 0,
+    "udp_visionSystemIP": "192.168.53.120",
+    "udp_visionSystemPortPick_": "Valid values are 53004 (right) and 53005 (left)",
+    "udp_visionSystemPortPick": 0,
+    "pickMode_": "can be 'tray', 'orientationConstZ' or 'conveyor'",
+    "pickMode": "updateNetworksConfigTemplateValue",
+    "trayArea": {
+        "u0": 0,
+        "v0": 0,
+        "u1": 1023,
+        "v1": 0,
+        "u2": 1023,
+        "v2": 1023,
+        "u3": 0,
+        "v3": 1023
+    },
+    "stereoDepth": {
+        "mappingConfigPath": "updateNetworksConfigTemplateValue",
+        "inputLayerName0": "left",
+        "inputLayerName1": "right",
+        "outputLayerName1": "output",
+        "dataType_": "'fp32' or 'fp16' or 'int8'",
+        "dataType": "fp16",
+        "calibImgsPath0": "updateNetworksConfigTemplateValue",
+        "calibImgsPath1": "updateNetworksConfigTemplateValue",
+        "onnxPath": "updateNetworksConfigTemplateValue"
+    },
+    "yolo": {
+        "_comment": "configs for yolo for picking",
+        "onnxPath": "updateNetworksConfigTemplateValue",
+        "dataType_": "'fp32' or 'fp16' or 'int8'",
+        "dataType": "fp16",
+        "useTrt": true,
+        "calibImgsPath": "updateNetworksConfigTemplateValue",
+        "confThr": 0.123,
+        "nmsThr": 0.123,
+        "preprocessing": {
+            "color": true
+        },
+        "sortingDirection_": "'u' or 'v'",
+        "sortingDirection": "v",
+        "sortingRelationOperator": "<",
+        "inputLayerName": "images",
+        "outputLayerName": "output",
+        "classPredictionOn": false,
+        "desiredClasses": [],
+        "desiredClassesConstZ": {
+            "enable": false,
+            "classToValuesInMeterMapping": {
+                "0": 0.01
+            }
+        },
+        "classToDLCIndexMapping": {
+            "0": 0
+        },
+        "whichYoloToUse": "yoloV8"
+    },
+    "dlcs": [
+        {
+            "_comment": "configs for DLC: dataTypes: int8, fp16, fp32",
+            "onnxFilePath": "updateNetworksConfigTemplateValue",
+            "calibImgsPath": "updateNetworksConfigTemplateValue",
+            "dataType_": "'fp32' or 'fp16' or 'int8'",
+            "dataType": "fp16",
+            "confThr": 0.9,
+            "keyPointsWithHighProbThr": 1,
+            "useTrt": true,
+            "inputLayerName": "Placeholder:0",
+            "outputProbsName": "Sigmoid:0",
+            "outputLocName": "pose/locref_pred/block4/BiasAdd:0",
+            "constAspectRatioCrop": true,
+            "keypointIndicesMaskForDepth_": "keypoints idx which create area from which the depth information is taken",
+            "keypointIndicesMaskForDepth": [],
+            "keypointIndicesXAxis_": "indices of keypoints which are used for poseEstimation orientation (x-axis)",
+            "keypointIndicesXAxis": [],
+            "keypointIndicesXAxisDoubleCheck_": "indices of keypoints which form a vector which should be used for double checking the orientation of xaxis",
+            "keypointIndicesXAxisDoubleCheck": [
+                {
+                    "vectorHeadIdx": 0,
+                    "vectorTailIdx": 0
+                }
+            ],
+            "deltaAngleBetweenAxesThresholdInDegree": 20,
+            "centerpoint_": "fromKeyPoint or fromRect",
+            "centerpoint": "fromRect",
+            "centerpointIdx_": "when used 'fromKeyPoint'",
+            "centerpointIdx": [],
+            "longShortEdgePoseEstimationEnable": false,
+            "longShortEdgeLengthInMeterThr": 0.084,
+            "shrinkKeyPointsToCenterEnable": false,
+            "shrinkKeyPointsToCenterVal": 1.0,
+            "idxOfKeyPointForAxis0": 4,
+            "idxOfKeyPointForAxis1": 8,
+            "dlcCropOffset": 10
+        },
+        {
+            "_comment": "configs for DLC: dataTypes: int8, fp16, fp32",
+            "onnxFilePath": "",
+            "calibImgsPath": "",
+            "dataType_": "'fp32' or 'fp16' or 'int8'",
+            "dataType": "fp16",
+            "confThr": 0.9,
+            "keyPointsWithHighProbThr": 1,
+            "useTrt": true,
+            "inputLayerName": "Placeholder:0",
+            "outputProbsName": "Sigmoid:0",
+            "outputLocName": "pose/locref_pred/block4/BiasAdd:0",
+            "constAspectRatioCrop": true,
+            "keypointIndicesMaskForDepth_": "keypoints idx which create area from which the depth information is taken",
+            "keypointIndicesMaskForDepth": [],
+            "keypointIndicesXAxis_": "indices of keypoints which are used for poseEstimation orientation (x-axis)",
+            "keypointIndicesXAxis": [],
+            "keypointIndicesXAxisDoubleCheck_": "indices of keypoints which form a vector which should be used for double checking the orientation of xaxis",
+            "keypointIndicesXAxisDoubleCheck": [
+                {
+                    "vectorHeadIdx": 0,
+                    "vectorTailIdx": 0
+                }
+            ],
+            "deltaAngleBetweenAxesThresholdInDegree": 20,
+            "centerpoint_": "fromKeyPoint or fromRect",
+            "centerpoint": "fromRect",
+            "centerpointIdx_": "when used 'fromKeyPoint'",
+            "centerpointIdx": [],
+            "longShortEdgePoseEstimationEnable": false,
+            "longShortEdgeLengthInMeterThr": 0.084,
+            "shrinkKeyPointsToCenterEnable": false,
+            "shrinkKeyPointsToCenterVal": 1.0,
+            "idxOfKeyPointForAxis0": 4,
+            "idxOfKeyPointForAxis1": 8,
+            "dlcCropOffset": 10
+        }
+    ],
+    "fixRollAngle": false,
+    "fixPitchAngle": false,
+    "fixYawAngle": false,
+    "loopOffsetDepthPoints": 1,
+    "poseEstimationIPA": {
+        "fWallWidth": 0.0,
+        "vdims": [
+            0.2,
+            0.2,
+            0.1
+        ],
+        "mpose": [
+            1,
+            0,
+            0,
+            -0.1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0.01,
+            0,
+            0,
+            0,
+            1
+        ],
+        "r_from": 320,
+        "r_to": 800,
+        "c_from": 200,
+        "c_to": 840,
+        "parameterFile": "../../config/fc_gqcnn_suction.json"
+    },
+    "stechtest": false,
+    "maxAmountOfProductsPerImg": 5,
+    "tracking": {
+        "distanceThresholdHunAlgo": 0.123,
+        "nFramesExpirationThreshold": 123,
+        "removeTrkIfCoordExceedsVal": -0.123,
+        "conveyorVelocityDirection": -1.0,
+        "conveyorVelocityFeedingFactor": 0.00123,
+        "conveyorEncoderIncrements": 65535.0,
+        "hitstreakThrMeanVelocity": 10,
+        "whichAxis_": "xAxis or yAxis",
+        "whichAxis": "xAxis"
+    }
+}

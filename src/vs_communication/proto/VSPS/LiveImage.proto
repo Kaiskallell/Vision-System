@@ -1,0 +1,18 @@
+//----------------------------------------------------------------
+//--- Gerhard Schubert - GmbH Hofaeckerstr. 7 74564 Crailsheim ---
+//--- DGreb 07/2019 ----------------------------------------------
+//--- Version: 00.00.02 ------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+message CameraLiveImageRequest {
+  uint32 camera_id = 1;
+  bool live_image = 2;
+};
+
+message VisionSystemLiveImageRequest {
+  uint32 vision_system_id = 1;
+  bool live_image = 2;
+};

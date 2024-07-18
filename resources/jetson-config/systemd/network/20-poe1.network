@@ -1,0 +1,11 @@
+[Match]
+Name=poe1
+
+[Link]
+MTUBytes=9000
+RequiredForOnline=no
+
+[Network]
+Address=192.168.101.41/24
+
+

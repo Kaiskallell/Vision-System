@@ -1,0 +1,9 @@
+testfiles/*
+!testfiles/.gitkeep
+networks/*
+!networks/.gitkeep
+install
+installFiles
+!installFiles/.gitkeep
+mockCameraImgs
+!mockCameraImgs/.gitkeep

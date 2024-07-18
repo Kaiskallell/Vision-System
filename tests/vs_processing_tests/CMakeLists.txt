@@ -1,0 +1,11 @@
+message("Build " ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_subdirectory(pose_estimation_test)
+add_subdirectory(stereoDepthEstimator_test)
+add_subdirectory(yolo_test)
+add_subdirectory(yolo_filterBySize_test)
+add_subdirectory(deeplabcut_test)
+add_subdirectory(handEyeCalibration3dBoard_test)
+add_subdirectory(stereoCalibration_test)
+add_subdirectory(yoloDlcPipeline_test)
+

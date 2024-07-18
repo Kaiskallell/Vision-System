@@ -1,0 +1,13 @@
+[Unit]
+Description=Manages syslog file size
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/cobot/Documents/git/VisionSystem/scripts/manage_syslog.sh
+User=root
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

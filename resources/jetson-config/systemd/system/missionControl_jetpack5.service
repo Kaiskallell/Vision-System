@@ -1,0 +1,30 @@
+[Unit]
+Description=Runs `mission Control of VisionSystem` 
+Wants=network-online.target
+After=network-online.target
+Requires=jetson-performance_jetpack5.service
+After=jetson-performance_jetpack5.service
+Requires=display-manager.service
+After=display-manager.service
+
+[Service]
+Type=simple
+User=cobot
+Restart=on-failure
+RestartSec=5s
+# setup environment for `detect pickable objects`
+Environment="CUDADIR=/usr/local/cuda"
+Environment="export DISPLAY=:0"
+Environment="GENICAM_GENTL64_PATH=/usr/lib/ids/cti"
+# the env _ normally contains the path to the current executable but is not set 
+# by systemd. If it does not exist the old logging macros segfault.
+Environment="_=./missionController"
+ExecStartPre=/bin/sleep 3
+WorkingDirectory=/home/cobot/Documents/git/VisionSystem/build/bin
+# start `detect pickable objects`
+ExecStart=/home/cobot/Documents/git/VisionSystem/build/bin/missionController
+
+[Install]
+WantedBy=multi-user.target
+
+

@@ -1,0 +1,40 @@
+{
+	"cameras" : [
+		{
+			"serialNumber":"700009474060",
+			"desiredIpAddress": "192.168.101.51",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "poe1"
+		},
+		{
+			"serialNumber":"700009474066",
+			"desiredIpAddress": "192.168.102.52",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "poe2"
+		},
+		{
+			"serialNumber":"700009474054",
+			"desiredIpAddress": "192.168.103.53",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "poe3"
+		},
+		{
+			"serialNumber":"700009474069",
+			"desiredIpAddress": "192.168.104.54",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "poe4"
+		},
+		{
+			"serialNumber":"700009474070",
+			"desiredIpAddress": "192.168.105.55",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "eth0"
+		},
+		{
+			"serialNumber":"700009800251",
+			"desiredIpAddress": "192.168.106.56",
+			"desiredSubnetmask": "255.255.255.0",
+			"nic": "eth1"
+		}
+	]
+}

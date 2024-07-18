@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/gabime/spdlog.git
+	branch = v1.x
+	commit = b6b1c2f95d2ad833408633346047903428d46c42
+	parent = 4e1d7f27280f35c83431757568ba6a26c0ee482c
+	method = merge
+	cmdver = 0.4.3

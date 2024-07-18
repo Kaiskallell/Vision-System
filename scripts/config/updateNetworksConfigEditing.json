@@ -1,0 +1,11 @@
+{
+    "overwrite_": "Usage Example: 'cameraConfigs.camera.0.polygonPoints' -> to overwrite these values with the information from the template",
+    "overwrite": [
+        "_commentNetworksConfig",
+        "cameraConfigs.camera.0.mockImgsPath"
+    ],
+    "remove_": "Usage Example: 'cameraConfigs.camera.0.polygonPoints' -> to remove these values from the files",
+    "remove": [
+        "tracking.initKalmanFilter"
+    ]
+}

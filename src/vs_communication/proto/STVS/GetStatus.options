@@ -1,0 +1,8 @@
+//----------------------------------------------------------------
+//--- Lachmann & Rink GmbH, Hommeswiese 129, 57258 Freudenberg ---
+//--- tha 01/2019 ------------------------------------------------
+//----------------------------------------------------------------
+
+# GetStatus.options
+VMS.VisionSystem.AreaInfo.object_infos max_count:32
+VMS.VisionSystem.GetStatusResponseAck.area_infos max_count:8

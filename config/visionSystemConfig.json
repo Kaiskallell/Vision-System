@@ -1,0 +1,13 @@
+{
+    "_comment": "vision system settings",
+    "constant": 10000,
+    "databaseLink": "tcp://127.0.0.1:6379",
+    "type": 0,
+    "typeComment": [
+        "defined in init.proto",
+        "0: TYP_TOG519",
+        "1: undefined"
+    ],
+    "vms_backend_ip": "192.168.52.130",
+    "enableVisualization": false
+}

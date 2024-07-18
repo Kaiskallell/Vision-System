@@ -1,0 +1,20 @@
+//----------------------------------------------------------------
+//--- Lachmann & Rink GmbH, Hommeswiese 129, 57258 Freudenberg ---
+//--- tha 12/2018 ------------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+// [START csharp_declaration]
+option csharp_namespace = "VMS.VisionSystem";
+// [END csharp_declaration]
+
+// [START messages]
+
+message ResponseNack {
+  //in enum wandeln
+  uint32 error_code = 1;
+}
+
+// [END messages]

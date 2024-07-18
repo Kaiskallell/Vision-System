@@ -1,0 +1,29 @@
+//----------------------------------------------------------------
+//--- Lachmann & Rink GmbH, Hommeswiese 129, 57258 Freudenberg ---
+//--- jan 06/2021 ------------------------------------------------
+//--- Version: 00.00.01 ------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+// [START csharp_declaration]
+option csharp_namespace = "VMS.VisionSystem";
+// [END csharp_declaration]
+
+// [START messages]
+
+message VersionRequest {
+  int32 major_version = 1;
+  int32 minor_version = 2;
+  int32 patch_level = 3;
+}
+
+message VersionResponse {
+
+  int32 major_version = 1;
+  int32 minor_version = 2;
+  int32 patch_level = 3;
+}
+
+// [END messages]

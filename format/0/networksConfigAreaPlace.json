@@ -1,0 +1,192 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "areaNumber_": "need to be 3 or 4",
+    "areaNumber": 3,
+    "udp_configuration":
+    {
+        "udp_enabled": false,
+        "udp_twinCatIP": "192.168.53.89",
+        "udp_twinCATPort_": "valid values are 53006 for area 3 and 53007 for area 4",
+        "udp_twinCatPort": 53006,
+        "udp_visionSystemIP": "192.168.53.120",
+        "udp_visionSystemPort_": "valid values are 53006 for area 3 and 53007 for area 4",
+        "udp_visionSystemPort": 53006
+    },
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "_type": [
+            "MockCamera",
+            "BaumerCam",
+            "GV5040FA"
+        ],
+        "camera": [
+            {
+                "polygonPoints_": "detection area masking points, which are used to create a polygon (clockwise)",
+                "polygonPoints": [
+                    {
+                        "id": 1,
+                        "u": 0,
+                        "v": 80
+                    },
+                    {
+                        "id": 2,
+                        "u": 1023,
+                        "v": 78
+                    },
+                    {
+                        "id": 3,
+                        "u": 1023,
+                        "v": 832
+                    },
+                    {
+                        "id": 4,
+                        "u": 0,
+                        "v": 837
+                    }
+                ],
+                "exposureTime": 3000,
+                "binningEnabled": false,
+                "serialNumbers": [
+                    "700009474070"
+                ],
+                "type": "MockCamera",
+                "triggerMode_": "'Hardware', 'Off'",
+                "triggerMode": "Off",
+                "cropX": 192,
+                "cropY": 28,
+                "cropWidth": 1024,
+                "cropHeight": 1024,
+                "color": false,
+                "mockImgsPath": "/home/cobot/Documents/git/VisionSystem/resources/mockcamera/area3/imgs/cam0/",
+                "reverseY": false,
+                "reverseX": false
+            }
+        ]
+    },
+    "appConfigs":{
+        "yolo": {
+            "_comment": "configs for yolo",
+            "generalNetworkConfigs":{
+                "onnxPath": "../../resources/mockcamera/area3/config/20240222_tray_detection_Minderleinsmuehle_Messe_1cls_1024_best.onnx",
+                "dataType_": "'fp32' or 'fp16' or 'int8'",
+                "dataType": "fp16",
+                "useTrt": true,
+                "calibImgsPath": "",
+                "inputLayerName": "images",
+                "outputLayerName": "output",
+                "whichYoloToUse": "yoloV5",
+                "preprocessing": {
+                    "color": false
+                }
+            },
+            "detectionConfigs":{
+                "confThr": 0.5,
+                "nmsThr": 0.4,
+                "filterBySize":{
+                    "enable": false,
+                    "widthMin": 150.0,
+                    "widthMax": 300.0,
+                    "heightMin": 150.0,
+                    "heightMax": 150.0
+                },
+                "classPredictionOn": true,
+                "desiredClasses": [
+                    0,
+                    1
+                ],
+                "desiredClassesConstZ": {
+                    "enable": true,
+                    "classToValuesInMeterMapping": {
+                        "0": 0.310,
+                        "1": 0.310
+                    }
+                },
+                "classToDLCIndexMapping": {
+                    "0": 0,
+                    "1": 0
+                },
+                "cropOffset": 10,
+                "sortingDirection_": "'u' or 'v'",
+                "sortingDirection": "v",
+                "sortingRelationOperator": "<"
+            }
+        },
+        "dlcs": [
+            {
+                "_comment": "configs for DLC: dataTypes: int8, fp16, fp32",
+                "generalNetworkConfigs":{
+                    "onnxFilePath": "../../resources/mockcamera/area3/config/20240222_tray_detection_Minderleinsmuehle_Messe_25_trays_snapshot-500000.onnx",
+                    "calibImgsPath": "",
+                    "dataType_": "'fp32' or 'fp16' or 'int8'",
+                    "dataType": "fp16",
+                    "useTrt": true,
+                    "inputLayerName": "Placeholder:0",
+                    "outputProbsName": "Sigmoid:0",
+                    "outputLocName": "pose/locref_pred/block4/BiasAdd:0",
+                    "constAspectRatioCrop": true
+                },
+                "detectionConfigs":{
+                    "confThr": 0.8,
+                    "keyPointsWithHighProbThr": 25,
+                    "shrinkKeyPointsToCenterEnable": false,
+                    "shrinkKeyPointsToCenterVal": 1.0
+                },
+                "poseEstimationConfigs":{
+                    "centerpointConfigs":{
+                        "centerpoint_": "fromKeyPoint or fromRect",
+                        "centerpoint": "fromKeyPoint",
+                        "centerpointIdx_": "when used 'fromKeypoint'",
+                        "centerpointIdxs": [
+                            0,4,24,8
+                        ]
+                    },
+                    "orientationZConfigs":{
+                        "keypointIndicesXAxis_": "indices of keypoints which are used for poseEstimation orientation (x-axis)",
+                        "keypointIndicesXAxis": [
+                            5,
+                            7
+                        ],
+                        "keypointIndicesXAxisDoubleCheck_": "indices of keypoints which form a vector which should be used for double checking the orientation of xaxis",
+                        "keypointIndicesXAxisDoubleCheck": [
+                            {
+                                "vectorHeadIdx": 23,
+                                "vectorTailIdx": 21
+                            }
+                        ],
+                        "deltaAngleBetweenAxesThresholdInDegree": 20
+                    }  
+                },
+                "qualityGateDimension": {
+                    "enable": false,
+                    "idxs": [
+                        {
+                            "idx0": 1,
+                            "idx1": 2,
+                            "distanceThrInMeter": 0.123
+                        },
+                        {
+                            "idx0": 1,
+                            "idx1": 2,
+                            "distanceThrInMeter": 0.123
+                        }
+                    ]
+                }
+            }
+        ],
+        "tracking": {
+            "distanceThresholdHunAlgo": 0.1,
+            "nFramesExpirationThreshold": 10000,
+            "removeTrkIfCoordExceedsVal": -0.6,
+            "conveyorVelocityDirection": -1.0,
+            "conveyorVelocityFeedingFactor": 0.0013203,
+            "conveyorEncoderIncrements": 65535.0,
+            "whichAxis_": "xAxis or yAxis",
+            "whichAxis": "yAxis"
+        }
+    }
+}

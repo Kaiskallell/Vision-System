@@ -1,0 +1,282 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "areaNumber": 2,
+    "udp_configuration":
+    {
+        "udp_enabled": false,
+        "udp_twinCatIP": "192.168.53.89",
+        "udp_twinCatPort": 53005,
+        "udp_visionSystemIP": "192.168.53.120",
+        "udp_visionSystemPort": 53005
+    },
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "_type": [
+            "MockCamera",
+            "creStereoMock",
+            "creStereoBaumer",
+            "creStereoGV5040FA",
+            "BaumerCam",
+            "GV5040FA"
+        ],
+        "camera": [
+            {
+                "polygonPoints": [
+                    {
+                        "id": 1,
+                        "u": 285,
+                        "v": 0
+                    },
+                    {
+                        "id": 2,
+                        "u": 1020,
+                        "v": 0
+                    },
+                    {
+                        "id": 3,
+                        "u": 1020,
+                        "v": 1023
+                    },
+                    {
+                        "id": 4,
+                        "u": 285,
+                        "v": 1024
+                    }
+                ],
+                "exposureTime": 3000,
+                "binningEnabled": false,
+                "serialNumbers": [
+                    "700009474054",
+                    "700009474069"
+                ],
+                "type": "creStereoMock",
+                "triggerMode_": "'Hardware', 'Off'",
+                "triggerMode": "Off",
+                "cropX": 256,
+                "cropY": 33,
+                "cropWidth": 1024,
+                "cropHeight": 1024,
+                "color": false,
+                "mockImgsPath": "../../resources/mockcamera/area2/imgs",
+                "reverseY": false,
+                "reverseX": false,
+                "stereoDepth": {
+                    "mappingConfigPath": "../../resources/mockcamera/area2/config/stereoMap_inv_area2_832_mock.xml",
+                    "inputLayerName0": "left",
+                    "inputLayerName1": "right",
+                    "outputLayerName1": "output",
+                    "dataType_": "'fp32' or 'fp16' or 'int8'",
+                    "dataType": "fp16",
+                    "calibImgsPath0": "",
+                    "calibImgsPath1": "",
+                    "onnxPath": "../../resources/mockcamera/area2/config/20231103_CGIstereo_Multiobjects_10cm_832_checkpoint_000099_maxdisp192_simplified_Norm_manual_changed_new_topk_best_v2_strict_simplified.onnx"
+                }
+            }
+        ]
+    },
+    "stechtestConfigs": {
+        "active": false,
+        "filterByArea": true,
+        "minArea": 100.0,
+        "filterByCircularity": true,
+        "minCircularity": 0.9,
+        "filterByConvexity": true,
+        "minConvexity": 0.2,
+        "filterByInertia": true,
+        "minInertiaRatio": 0.01,
+        "distanceToStechBoard": 0.262
+    },
+    "appConfigs":{
+        "generalConfigs":{
+            "pickMode_": "can be 'tray' or 'conveyor' or 'ipaDetection'",
+            "pickMode": "conveyor",
+            "trayArea": {
+                "u0": 0,
+                "v0": 0,
+                "u1": 1023,
+                "v1": 0,
+                "u2": 1023,
+                "v2": 1023,
+                "u3": 0,
+                "v3": 1023
+            },
+            "maxAmountOfProductsPerImg": 5
+        },
+        "yolo": {
+            "_comment": "configs for yolo",
+            "generalNetworkConfigs":{
+                "onnxPath": "../../resources/mockcamera/area2/config/20230322_random_bottles_yolov8_epoch12.onnx",
+                "dataType_": "'fp32' or 'fp16' or 'int8'",
+                "dataType": "fp16",
+                "useTrt": true,
+                "calibImgsPath": "",
+                "inputLayerName": "images",
+                "outputLayerName": "output0",
+                "whichYoloToUse": "yoloV8",
+                "preprocessing": {
+                    "color": false
+                }
+            },
+            "detectionConfigs":{
+                "confThr": 0.8,
+                "nmsThr": 0.4, 
+                "filterBySize":{
+                    "enable": false,
+                    "widthMin": 150.0,
+                    "widthMax": 300.0,
+                    "heightMin": 150.0,
+                    "heightMax": 150.0
+                },         
+                "classPredictionOn": false,
+                "desiredClasses": [
+                    0
+                ],
+                "desiredClassesConstZ": {
+                    "enable": false,
+                    "classToValuesInMeterMapping": {
+                        "0": 0.3
+                    }
+                },
+                "classToDLCIndexMapping": {
+                    "0": 0
+                },
+                "cropOffset": 10,
+                "sortingDirection_": "'u' or 'v'",
+                "sortingDirection": "v",
+                "sortingRelationOperator": "<"
+            }
+        },
+        "dlcs": [
+            {
+                "_comment": "configs for DLC: dataTypes: int8, fp16, fp32",
+                "generalNetworkConfigs":{
+                    "onnxFilePath": "../../resources/mockcamera/area2/config/20220424_random_bottles_dlc_snapshot-500000.onnx",
+                    "calibImgsPath": "",
+                    "dataType_": "'fp32' or 'fp16' or 'int8'",
+                    "dataType": "fp16",
+                    "useTrt": true,
+                    "inputLayerName": "Placeholder:0",
+                    "outputProbsName": "Sigmoid:0",
+                    "outputLocName": "pose/locref_pred/block4/BiasAdd:0",
+                    "constAspectRatioCrop": true
+                },
+                "detectionConfigs":{
+                    "confThr": 0.8,
+                    "keyPointsWithHighProbThr": 10,
+                    "shrinkKeyPointsToCenterEnable": false,
+                    "shrinkKeyPointsToCenterVal": 1.0
+                },
+                "poseEstimationConfigs":{
+                    "centerpointConfigs":{
+                        "centerpoint_": "fromKeyPoint or fromRect",
+                        "centerpoint": "fromRect",
+                        "centerpointIdx_": "when used 'fromKeyPoint'",
+                        "centerpointIdxs": [
+                            22
+                        ]
+                    },
+                    "planeEstimationConfigs":{
+                        "keypointIndicesMaskForDepth_": "keypoints idx which create area from which the depth information is taken",
+                        "keypointIndicesMaskForDepth": [
+                            4,
+                            5,
+                            13,
+                            12
+                        ],
+                        "loopOffsetDepthPoints": 1,
+                        "useConvexHull": true,
+                        "maxDepth": 1.5,
+                        "minDepth": 0.3,
+                        "layers":{
+		                "useLayers": false,
+		                "layersValues": [
+		                    0.316
+		                ],
+		                "layersResolution": 0.0189
+                        }
+                    },
+                    "orientationZConfigs":{
+                        "keypointIndicesXAxis_": "indices of keypoints which are used for poseEstimation orientation (x-axis)",
+                        "keypointIndicesXAxis": [
+                            18,
+                            19
+                        ],
+                        "longShortConfigs":{
+                            "longShortEdgePoseEstimationEnable": false,
+                            "longShortEdgeLengthInMeterThr": 0.084,
+                            "idxOfKeyPointForAxis0": 4,
+                            "idxOfKeyPointForAxis1": 8
+                        },
+                        "keypointIndicesXAxisDoubleCheck_": "indices of keypoints which form a vector which should be used for double checking the orientation of xaxis",
+                        "keypointIndicesXAxisDoubleCheck": [
+                            {
+                                "vectorHeadIdx": 1,
+                                "vectorTailIdx": 0
+                            },
+                            {
+                                "vectorHeadIdx": 3,
+                                "vectorTailIdx": 2
+                            },
+                            {
+                                "vectorHeadIdx": 17,
+                                "vectorTailIdx": 16
+                            }
+                        ],
+                        "deltaAngleBetweenAxesThresholdInDegree": 20
+                    }
+                },
+                "qualityGateDimension": {
+                    "enable": false,
+                    "idxs": [
+                        {
+                            "idx0": 5,
+                            "idx1": 6,
+                            "distanceThrInMeter": 0.005
+                        }
+                    ]
+                }
+            }
+        ],
+        "posePostProcessing":{
+            "fixRollAngle": true,
+            "fixPitchAngle": true,
+            "fixYawAngle": false
+        },
+        "poseEstimationIPA": {
+            "fWallWidth": 0.0,
+            "vdims": [
+                0.2,
+                0.2,
+                0.1
+            ],
+            "mpose": [
+                1,
+                0,
+                0,
+                -0.1,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0.01,
+                0,
+                0,
+                0,
+                1
+            ],
+            "r_from": 320,
+            "r_to": 800,
+            "c_from": 200,
+            "c_to": 840,
+            "parameterFile": "../../config/fc_gqcnn_suction.json"
+        }
+    }
+}

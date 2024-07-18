@@ -1,0 +1,22 @@
+{
+    "general_description":
+    {
+        "purpose_format": "",
+        "Written_by":"",
+        "Time":""
+    },
+    "calibrationConfigs": {
+        "ImagePath_": "path to img which is used for intrinsic camera paramter calculation.",
+        "ImagePath": "/home/cobot/Documents/git/VisionSystem/resources/mockcamera/singlecameracalibration/"
+    },
+    "cameraConfigs": {
+        "_comment": "camera parameter",
+        "camera": [
+            {
+                "serialNumbers": [
+                    "700009474066"
+                ]
+            }
+        ]
+    }
+}

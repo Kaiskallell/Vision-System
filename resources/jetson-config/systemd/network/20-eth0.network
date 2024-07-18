@@ -1,0 +1,11 @@
+[Match]
+Path=platform-3610000.xhci-usb-0:3.1:1.0
+
+[Link]
+Name=eth0
+MTUBytes=9000
+RequiredForOnline=no
+
+[Network]
+Address=192.168.105.45/24
+

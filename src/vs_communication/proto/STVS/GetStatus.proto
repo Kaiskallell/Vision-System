@@ -1,0 +1,113 @@
+//----------------------------------------------------------------
+//--- Lachmann & Rink GmbH, Hommeswiese 129, 57258 Freudenberg ---
+//--- tha 12/2018 ------------------------------------------------
+//----------------------------------------------------------------
+
+syntax = "proto3";
+package VMS.VisionSystem;
+
+// [START csharp_declaration]
+option csharp_namespace = "VMS.VisionSystem";
+// [END csharp_declaration]
+
+// [START messages]
+
+// Request message for asking about the vision-systems status.
+// The status could e. g. include area information as well as information
+// about detected objects inside this areas.
+// Currently requests are send periodically (e.g. every 30ms) to the vision-system.
+// Due to the fact that the vision-system has no real-time guarantees the vision-system
+// is allowed to provide a delayed response (e. g. delay of 2.5s).
+// New requests are delayed if the response exceeds the time for periodic request.
+message GetStatusRequest {
+  // Array of bits (binary signals) provided from control to vision-system
+  // The bits can be used to exchange definable information between the systems
+  // e. g. allowing to affect the roboter programm.
+  // Excamples for signales could be:
+  // - Trigger for updating the object list of a defined area
+  // - Triggering the system to take an image while hand-eye-calibration
+  uint32 digital_io_ctrl_to_vs = 1;
+}
+
+enum ObjectType {
+  Product = 0;
+  Tray = 1;
+}
+
+// Information about a object detected by the vision-system
+message ObjectInfo {
+  // Sequence number is incremented with every object detected (inside the corresponding area)
+  uint32 sequence_number = 1;
+
+  ObjectType object_type = 2;
+
+  // Id of the detected object. Objects and corresponding ids are defined in the PS.
+  // An id could determine objects of different formats or e. g. the front or backside
+  // of one type of object.
+  uint32 object_id = 3;
+
+  int32 coord_x = 6;        // [mm/10]
+  int32 coord_y = 7;        // [mm/10]
+  int32 coord_z = 8;        // [mm/10]
+
+  int32 angle_yaw = 9;      // [Grad/10] Rotation um z   (Yaw)
+  int32 angle_pitch = 10;   // [Grad/10] Rotation um y'  (Pitch)
+  int32 angle_roll = 11;    // [Grad/10] Rotation um x'' (Roll)
+
+  // Value of rotary encoder (e. g. conveyor belt)
+  // The encoder value is used to determine the position of an object on a transportation
+  // system. It is possible to calculate the actual position (and estimate future positions)
+  // of an object by using the encoder value provided with the object and the subsequent encoder
+  // values.
+  uint32 encoder_value = 12;
+
+  // Unique number of the object (assigned by the vision-system).
+  // In the future, objects should be uniquely identifiable between
+  // individual frames. Thus alowing a tracking based on camera data.
+  // Uids are incremented from 1 to 2^64.
+  // If an equal or smaller number is received, an error in the processing
+  // is assumed.
+  uint64 object_uid = 13;
+
+  // Update count for "re-recognized" objects.
+  // If an re-recognizion of objects is possible the vision-system can
+  // increment this value. Thus avoiding the control to assume information
+  // of one object was falsely provided twice.
+  uint32 update_count = 14;
+}
+
+// Information about an area recorded by the vision-system
+message AreaInfo {
+
+  // Id of the area which the information referes to
+  uint32 area_number = 1;
+
+  // Poses and according information of detected objects
+  repeated ObjectInfo object_infos = 4;
+
+  // Unique number of the frame (3-channel and depthmap),
+  // which was used to calucate the object information for this area_id
+  // Incremented from 1 to 2^64.
+  // If an equal or smaller number is received, an error in the processing
+  // is assumed.
+  uint64 frame_uid = 5;
+}
+
+// Response message for providing information about defined areas and
+// detected objects
+message GetStatusResponseAck {
+
+  // Using this information the vision-system can provide error information
+  // to the control unit, e. g. causing the robot to change to an error state.
+  uint32 error_class = 2;
+  uint32 error_number = 3;
+
+  // Array of bits (binary signals) provided from vision-system to control
+  // The bits can be used to exchange definable information between the systems
+  // e. g. allowing to affect the roboter programm.
+  uint32 digital_io_vs_to_ctrl = 4;
+
+  repeated AreaInfo area_infos = 6;
+}
+
+// [END messages]
