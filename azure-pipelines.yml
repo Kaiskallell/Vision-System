@@ -1,0 +1,41 @@
+stages:
+- stage: BuildStage
+  jobs:
+    - job: 'MyBuildJob'
+      pool:
+        name: Cobot
+        demands:
+          - agent.name -equals jetsonDevKit
+      steps:
+      - script: |
+         set -e # Exit immediately if a command exits with a non-zero status
+         mkdir build
+         cd build
+         cmake ..
+         make -j8
+          
+- stage: TestStage
+  dependsOn: BuildStage
+  condition: succeeded('BuildStage')
+  jobs:
+    - job: 'MyTestJob'
+      pool:
+        name: Cobot
+        demands:
+          - agent.name -equals jetsonDevKit
+      steps:
+      - script: |
+         set -e # Exit immediately if a command exits with a non-zero status
+         mkdir build
+         cd build
+         cmake -D BUILD_TESTS=ON ..
+         make -j8
+         cd tests
+         ./TEST_Yolo
+         ./TEST_Yolo_FILTERBYSIZE
+         ./TEST_YoloDlcPipeline
+         ./TEST_HandEyeAlgo3dBoard
+         ./TEST_PoseEstimation
+         ./TEST_dlc
+         ./TEST_StereoCalibration
+         ./TEST_classificationExtension

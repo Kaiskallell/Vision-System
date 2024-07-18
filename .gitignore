@@ -1,0 +1,62 @@
+#which file should be ignored by git
+build
+vs_networks/
+code_snippets
+.vscode
+.vs
+.grok
+
+#qtcreator cmake config (CMakeLists.txt.user)
+*.user
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+!libs/external/lumiscan/arm/libs/*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+#tensorRT files
+*.trt
+*.engine
+
+#pytorch
+.pth
+.onnx
+.wts
+
+#python cache
+*.pyc
+__pycache__/
+
+#images
+*.png
+*.jpg
+*.bmp
+*.tiff
+
+#install files
+*.deb
